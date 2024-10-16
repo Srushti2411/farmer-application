@@ -1,19 +1,30 @@
-import express from 'express';
-import cors from 'cors';
+import farmerRoutes from './routes/farmer.js';
+import productRoutes from './routes/product.js';
+import orderRoutes from './routes/order.js';
+
+dotenv.config(); // Load environment variables from .env file
 
 const app = express();
+
+// Middleware
 app.use(cors());
 app.use(express.json());
 
-const PORT = 5000;
+// Import routes
+import farmerRoutes from './routes/farmer.js';
+import productRoutes from './routes/product.js';
+import orderRoutes from './routes/order.js';
 
-app.get("/health",(req,res)=>{
-    res.json({
-        success : true,
-        message : "server is running ",
-    })
-})
+// Use routes
+app.use('/api/farmers', farmerRoutes);
+app.use('/api/products', productRoutes);
+app.use('/api/orders', orderRoutes);
 
-app.listen(PORT,()=>{
-    console.log(`Server is running on port ${PORT}`);
-});
+// Connect to MongoDB
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => console.log('MongoDB connected'))
+    .catch(err => console.log(err));
+
+// Start the server
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
