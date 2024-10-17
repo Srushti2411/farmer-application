@@ -15,6 +15,9 @@ const Navbar = ({ isLoggedIn, userType }) => {
           <Link to="/farmer-dashboard">Farmer Dashboard</Link> {/* Corrected link */}
         </li>
         <li>
+          <Link to="/productpage">Products</Link> {/* Corrected to match Product Page route */}
+        </li>
+        <li>
           <Link to="/about">About Us</Link>
         </li>
 
@@ -22,9 +25,6 @@ const Navbar = ({ isLoggedIn, userType }) => {
         {isLoggedIn ? (
           <>
             {/* Links for logged-in users */}
-            <li>
-              <Link to="/dashboard">Dashboard</Link>
-            </li>
             <li>
               <Link to="/orders">Orders</Link>
             </li>
