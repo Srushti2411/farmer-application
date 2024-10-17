@@ -1,18 +1,20 @@
+// App.js
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
-import FarmerDashboard from './pages/FarmerDashboard';
-import AddProduct from './pages/AddProduct';
-import OrderManagement from './pages/OrderManagement';
+import Navbar from './components/Navbar/Navbar';
+import FarmerDashboard from './pages/FarmerDashboard/FarmerDashboard'; // Import FarmerDashboard
+import Productpage from './pages/Productpage/Productpage'; // Import Productpage
 
 function App() {
     return (
-        <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/farmer-dashboard" element={<FarmerDashboard />} />
-            <Route path="/add-product" element={<AddProduct />} />
-            <Route path="/orders" element={<OrderManagement />} />
-        </Routes>
+        <>
+            <Navbar isLoggedIn={true} userType="farmer" /> {/* Navbar visible on all pages */}
+            <Routes>
+                <Route path="/farmer-dashboard" element={<FarmerDashboard />} /> {/* Add Farmer Dashboard route */}
+                <Route path="/productpage" element={<Productpage />} /> {/* Product page route */}
+                {/* Additional routes can be added here when ready */}
+            </Routes>
+        </>
     );
 }
 
