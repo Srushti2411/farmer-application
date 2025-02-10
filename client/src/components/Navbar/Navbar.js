@@ -32,7 +32,17 @@ const Navbar = ({ isLoggedIn, userType }) => {
               <Link to="/profile">Profile</Link>
             </li>
             <li>
-              <Link to="/logout">Logout</Link>
+              <Link to="/logout">Select language :</Link>
+                      <select 
+              defaultValue={localStorage.getItem("lang")}
+              onChange={(e)=>{
+                localStorage.setItem("lang",e.target.value);
+                window.location.reload();
+              }}>
+                <option value="mr">Marathi</option>
+                <option value="hi">Hindi</option>
+                <option value="en">English</option>
+              </select>
             </li>
           </>
         ) : (
